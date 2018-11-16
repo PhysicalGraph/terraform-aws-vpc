@@ -18,9 +18,44 @@ variable "assign_generated_ipv6_cidr_block" {
   default     = false
 }
 
+variable "assign_ipv6_address_on_creation" {
+  description = "Specify true to indicate that network interfaces created in the specified subnet should be assigned an IPv6 address"
+  default     = false
+}
+
+variable "secondary_cidr_blocks" {
+  description = "List of secondary CIDR blocks to associate with the VPC to extend the IP Address pool"
+  default     = []
+}
+
 variable "instance_tenancy" {
   description = "A tenancy option for instances launched into the VPC"
   default     = "default"
+}
+
+variable "public_subnet_suffix" {
+  description = "Suffix to append to public subnets name"
+  default     = "public"
+}
+
+variable "private_subnet_suffix" {
+  description = "Suffix to append to private subnets name"
+  default     = "private"
+}
+
+variable "database_subnet_suffix" {
+  description = "Suffix to append to database subnets name"
+  default     = "db"
+}
+
+variable "redshift_subnet_suffix" {
+  description = "Suffix to append to redshift subnets name"
+  default     = "redshift"
+}
+
+variable "elasticache_subnet_suffix" {
+  description = "Suffix to append to elasticache subnets name"
+  default     = "elasticache"
 }
 
 variable "public_subnets" {
@@ -141,6 +176,11 @@ variable "enable_vpn_gateway" {
 variable "vpn_gateway_id" {
   description = "ID of VPN Gateway to attach to the VPC"
   default     = ""
+}
+
+variable "amazon_side_asn" {
+  description = "The Autonomous System Number (ASN) for the Amazon side of the gateway. By default the virtual private gateway is created with the current default Amazon ASN."
+  default     = "64512"
 }
 
 variable "propagate_private_route_tables_vgw" {
